@@ -1,0 +1,22 @@
+{
+  "name": "photo_collection",
+  "version": "1.0.0",
+  "description": "a photo upload app for the city of seattle",
+  "main": "index.js",
+  "scripts": {
+    "test": "try"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/localbrainstorm/photoshare.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/localbrainstorm/photoshare/issues"
+  },
+  "homepage": "https://github.com/localbrainstorm/photoshare#readme",
+  "dependencies": {
+    "bower": "^1.3.12",
+  }
+}
