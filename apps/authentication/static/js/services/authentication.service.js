@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('authentication.services')
+        .module('user.authentication.services')
         .factory('Authentication', Authentication);
 
     Authentication.$inject = ['$cookies', '$http'];

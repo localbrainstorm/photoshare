@@ -46,7 +46,9 @@ INSTALLED_APPS = [
 BOWER_INSTALLED_APPS = (
     'angular',
     'bootstrap',
-    'jquery'
+    'jquery',
+    'angular-route',
+    'angular-cookies'
 )
 
 MIDDLEWARE = [

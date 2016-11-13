@@ -2,33 +2,14 @@
     'use strict';
 
     angular
-        .module('authentication', [
-            'authentication.controllers',
-            'authentication.services',
-            'authentication.routes',
-            'authentication.config'
+        .module('user.authentication', [
+            'user.authentication.controllers',
+            'user.authentication.services'
         ]);
 
     angular
-        .module('authentication.controllers', []);
+        .module('user.authentication.controllers', []);
 
     angular
-        .module('authentication.services', ['ngCookies']);
-
-    angular
-        .module('authentication.routes', ['ngRoute']);
-
-    angular
-        .module('authentication.config', []);
-
-    angular
-        .module('authentication')
-        .run(run);
-
-    run.$inject = ['$http'];
-
-    function run($http) {
-        $http.defaults.xsrfHeaderName = 'X-CSRFToken';
-        $http.defaults.xsrfCookieName = 'csrftoken';
-    }
+        .module('user.authentication.services', ['ngCookies']);
 })();
