@@ -11,5 +11,5 @@ router.register(r'accounts', AccountViewSet)
 urlpatterns = [
     url(r'^', include(router.urls)),
 
-     url(r'^$', homepage, name='index'),
+     url(r'^.*$', homepage, name='index'),
 ]

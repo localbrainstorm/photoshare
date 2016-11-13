@@ -6,8 +6,7 @@
             'user.config',
             'user.routes',
             'user.authentication'
-        ])
-        .run(run);
+        ]);
 
     angular
         .module('user.config', []);
@@ -15,6 +14,10 @@
     angular
         .module('user.routes', ['$ngRoute']);
 
+    angular
+        .module('user')
+        .run(run);
+        
     run.$inject = ['$http'];
 
     function run($http) {
