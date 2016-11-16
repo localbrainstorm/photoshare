@@ -8,11 +8,11 @@
     config.$inject = ['$routeProvider'];
 
     function config($routeProvider) {
-        $routeProvider.when('/register', {
+        $routeProvider.when('/', {
             controller: 'RegisterController',
             controllerAs: 'vm',
             // url relative to index
-            templateUrl: '../static/templates/register.html'
+            templateUrl: '../static/partials/register.html'
         }).otherwise({
             redirectTo: '/'
         });

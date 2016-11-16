@@ -141,3 +141,5 @@ STATICFILES_FINDERS = (
 )
 
 BOWER_COMPONENTS_ROOT = os.path.join(BASE_DIR, 'bower_components')
+
+COMPRESS_ENABLED = False

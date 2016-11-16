@@ -2,3 +2,6 @@
 *.pyc
 bower_components/
 npm-debug.log
+db.sqlite3
+*~
+*.swp

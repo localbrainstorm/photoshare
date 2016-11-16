@@ -14,10 +14,13 @@
 
         return Authentication;
 
-        function register(email, password) {
-            return $http.post('/accounts/', {
+        function register(email, first_name, last_name, password, confirm_password) {
+            return $http.post('/register', {
                 email: email,
-                password: password
+					 first_name: first_name,
+					 last_name: last_name,
+					 password: password,
+					 confirm_password: confirm_password
             });
         }
     }
