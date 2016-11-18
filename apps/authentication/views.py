@@ -9,8 +9,6 @@ from permissions import IsAccountOwner
 from serializers import AccountSerializer
 
 
-
-
 class AccountViewSet(viewsets.ModelViewSet):
 	lookup_field = 'email'
 	queryset = Account.objects.all()
