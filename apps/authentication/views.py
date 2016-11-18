@@ -11,6 +11,7 @@ from serializers import AccountSerializer
 
 
 
+<<<<<<< HEAD
 class AccountViewSet(viewsets.ModelViewSet):
 	lookup_field = 'email'
 	queryset = Account.objects.all()
@@ -48,3 +49,17 @@ class AccountViewSet(viewsets.ModelViewSet):
 			'status': 'Bad request',
 			'message': 'Account could not be created with received data'
 		}, status=status.HTTP_400_BAD_REQUEST)
+=======
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+
+        if serializer.is_valid():
+            Account.objects.create_user(**serializer.validated_data)
+
+            return response(serializer.validated_data, status=status.HTTP_201_CREATED)
+
+        return response({
+            'status': 'Bad request',
+            'message': 'Account could not be created with received data'
+            }, status=status.HTTP_400_BAD_REQUEST)
+>>>>>>> master
