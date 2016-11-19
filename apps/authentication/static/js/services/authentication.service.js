@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('user.authentication.services')
+        .module('photocollection.user.authentication.services')
         .factory('Authentication', Authentication);
 
     Authentication.$inject = ['$cookies', '$http'];
@@ -14,7 +14,8 @@
             getAuthenticatedAccount: getAuthenticatedAccount,
             isAuthenticated: isAuthenticated,
             setAuthenticatedAccount: setAuthenticatedAccount,
-            unauthenticate: unauthenticate
+            unauthenticate: unauthenticate,
+            logout: logout
         };
 
         return Authentication;
@@ -73,6 +74,21 @@
 
         function unauthenticate() {
             delete $cookies.authenticatedAccount;
+        }
+
+        function logout() {
+            return $http.post('/logout/')
+                .then(logoutSuccessFn, logoutErrorFn);
+
+            function logoutSuccessFn(data, status, headers, config) {
+                Authentication.unauthenticate();
+
+                window.location = '/';
+            }
+
+            function logoutErrorFn(data, status, headers, config) {
+                console.error('Logout failure');
+            }
         }
     }
 

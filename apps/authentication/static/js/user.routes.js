@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('user.routes', ['ngRoute'])
+        .module('photocollection.user.routes', ['ngRoute'])
         .config(config);
 
     config.$inject = ['$routeProvider'];

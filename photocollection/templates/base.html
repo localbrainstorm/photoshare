@@ -1,4 +1,4 @@
-<html>
+<html ng-app="photocollection">
 <head>
     <title>Photo Collection</title>
 
@@ -11,13 +11,13 @@
 </head>
 <body>
 
-    <div class="container-fluid">
-    <div class="row">
-      <div id="content" class="col-xs-12" ng-view>
-        {% block content %}{% endblock %}
-      </div>
-    </div>
-  </div>
+  <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarController as vm">
+    <ul class="nav navbar-nav pull-right">
+      <li><a href="javascript:void(0)" ng-click="vm.logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div>{% block content %}{% endblock %}</div>
 
 </body>
 

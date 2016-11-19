@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('user.authentication.controllers')
+        .module('photocollection.user.authentication.controllers')
         .controller('RegisterController', RegisterController);
 
     RegisterController.$inject = ['$location', '$scope', 'Authentication'];

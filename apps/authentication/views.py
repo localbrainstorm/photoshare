@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from rest_framework import permissions, viewsets, status, views
 from rest_framework.response import Response
@@ -73,3 +73,12 @@ class LoginView(views.APIView):
 				'status': 'Unauthorized',
 				'message': 'Username/password combination invalid.'
 			}, status=status.HTTP_401_UNAUTHORIZED)
+
+
+class LogoutView(views.APIView):
+	permission_classes = (permissions.IsAuthenticated,)
+
+	def post(self, request, format=None):
+		logout(request)
+
+		return Response({}, status=status.HTTP_204_NO_CONTENT)
