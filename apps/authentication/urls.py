@@ -2,18 +2,14 @@ from django.conf.urls import url, include
 
 from rest_framework_nested import routers
 
-from views import AccountViewSet
+from views import AccountViewSet, LoginView, IndexView
 
 
-# router = routers.SimpleRouter()
-# router.register(r'register', AccountViewSet)
+router = routers.SimpleRouter()
+router.register(r'register', AccountViewSet, base_name="register")
 
 urlpatterns = [
-    # url(r'^', include(router.urls)),
-	url(r'register', AccountViewSet.as_view({
-		'post': 'create',
-	})),
-    url(r'^.*$', AccountViewSet.as_view({
-		'get':'index'
-	})),
+    url(r'^login/$', LoginView.as_view(), name='login'),
+    url(r'^', include(router.urls)),
+    url('^.*$', IndexView.as_view(), name='index'),
 ]
