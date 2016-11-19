@@ -66,7 +66,10 @@ ROOT_URLCONF = 'photocollection.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['apps/authentication/'],
+        'DIRS': [
+            (os.path.join(BASE_DIR, 'photocollection/templates')),
+            'apps/authentication/'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

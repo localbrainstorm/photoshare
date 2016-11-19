@@ -1,18 +1,17 @@
-<html ng-app="user">
-<head>
-    <title>Users</title>
+{% extends "base.html" %}
 
-    <base href="/" />
+{% block javascripts %}
+{% include 'user_javascripts.html' %}
+{% endblock %}
 
-    {% include 'stylesheets.html' %}
-</head>
-<body>
-    <div class="container-fluid">
+{% block content %}
+<div class="container-fluid" ng-app="user">
     <div class="row">
-      <div class="col-xs-12 ng-view"></div>
+      <div class="col-xs-12" ng-view>
+      </div>
     </div>
-  </div>
+</div>
+{% endblock %}
 
-  {% include 'javascripts.html' %}
-</body>
-</html>
+
+

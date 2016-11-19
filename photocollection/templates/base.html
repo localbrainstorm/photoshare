@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>Photo Collection</title>
+
+    <base href="/" />
+
+    {% include 'stylesheets.html' %}
+    {% include 'base_js_files.html' %}
+    {% block javascripts %}{% endblock %}
+
+</head>
+<body>
+
+    <div class="container-fluid">
+    <div class="row">
+      <div id="content" class="col-xs-12" ng-view>
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+  </div>
+
+</body>
+
+
+</html>
