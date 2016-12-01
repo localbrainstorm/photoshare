@@ -69,11 +69,13 @@
         }
 
         function setAuthenticatedAccount(account) {
-            $cookies.authenticatedAccount = JSON.stringify(account);
+            console.log('setting authenticated account', account)
+            $cookies.putObject('authenticatedAccount', account);
+            $cookies.whoa = "ashjdf"
         }
 
         function unauthenticate() {
-            delete $cookies.authenticatedAccount;
+            $cookies.remove('authenticatedAccount');
         }
 
         function logout() {

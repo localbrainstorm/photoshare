@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 
 from rest_framework import permissions, viewsets, status, views
 from rest_framework.response import Response
+from rest_framework.request import Request
 
 from models import Account
 from permissions import IsAccountOwner
@@ -49,7 +50,7 @@ class AccountViewSet(viewsets.ModelViewSet):
 
 class LoginView(views.APIView):
 	def post(self, request, format=None):
-		data = json.loads(request.body)
+		data = request.data
 
 		email = data.get('email', None)
 		password = data.get('password', None)
