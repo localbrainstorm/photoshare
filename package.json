@@ -18,5 +18,6 @@
   "homepage": "https://github.com/localbrainstorm/photoshare#readme",
   "dependencies": {
     "bower": "^1.3.12",
+    "fine-uploader": "5.11.5"
   }
 }
