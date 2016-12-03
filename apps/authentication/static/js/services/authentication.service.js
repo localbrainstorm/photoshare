@@ -65,13 +65,11 @@
 
         function isAuthenticated() {
             // return the boolean value of the authenticated Account cookie
-            return !!$cookies.authenticatedAccount;
+            return !!$cookies.get('authenticatedAccount');
         }
 
         function setAuthenticatedAccount(account) {
-            console.log('setting authenticated account', account)
             $cookies.putObject('authenticatedAccount', account);
-            $cookies.whoa = "ashjdf"
         }
 
         function unauthenticate() {

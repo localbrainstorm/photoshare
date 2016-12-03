@@ -17,22 +17,21 @@
         vm.activate = activate;
 
         function logout() {
-          console.log('logging out')
-          Authentication.logout();
+            console.log('logging out')
+            Authentication.logout();
         }
 
         function login() {
-          window.location = '/login';
+            window.location = '/login';
         }
 
         function register() {
-          window.location = '/register';
+            window.location = '/register';
         }
 
         function activate() {
-          var truth =  Authentication.isAuthenticated();
-          console.log(truth);
-          return truth;
+            console.log(Authentication.isAuthenticated())
+            return Authentication.isAuthenticated();
         }
     }
 })();

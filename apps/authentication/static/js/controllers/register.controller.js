@@ -22,7 +22,7 @@
         }
 
         function register() {
-			  Authentication.register(vm.email, vm.first_name, vm.last_name, vm.password, vm.confirm_password);
+			Authentication.register(vm.email, vm.first_name, vm.last_name, vm.password, vm.confirm_password);
         }
     }
 })();
