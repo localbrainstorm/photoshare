@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('user.config', [])
+        .module('photocollection.user.config')
         .config(config);
 
     config.$inject = ['$locationProvider'];

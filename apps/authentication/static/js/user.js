@@ -2,26 +2,29 @@
     'use strict';
 
     angular
-        .module('user', [
-            'user.config',
-            'user.routes',
-            'user.authentication'
+        .module('photocollection.user', [
+            'photocollection.user.config',
+            'photocollection.user.routes',
+            'photocollection.user.authentication'
         ]);
 
     angular
-        .module('user.config', []);
+        .module('photocollection.user.config', []);
 
     angular
-        .module('user.routes', ['$ngRoute']);
+        .module('photocollection.user.routes', ['$ngRoute']);
 
-    angular
-        .module('user')
-        .run(run);
         
-    run.$inject = ['$http'];
+// might be able to remove this bit since
+// it's now in photocollection 
+    // angular
+    //     .module('photocollection.user')
+    //     .run(run);
+        
+    // run.$inject = ['$http'];
 
-    function run($http) {
-        $http.defaults.xsrfHeaderName = 'X-CSRFToken';
-        $http.defaults.xsrfCookieName = 'csrftoken';
-    }
+    // function run($http) {
+    //     $http.defaults.xsrfHeaderName = 'X-CSRFToken';
+    //     $http.defaults.xsrfCookieName = 'csrftoken';
+    // }
 })();

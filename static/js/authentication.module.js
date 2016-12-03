@@ -2,14 +2,14 @@
     'use strict';
 
     angular
-        .module('user.authentication', [
-            'user.authentication.controllers',
-            'user.authentication.services'
+        .module('photocollection.user.authentication', [
+            'photocollection.user.authentication.controllers',
+            'photocollection.user.authentication.services'
         ]);
 
     angular
-        .module('user.authentication.controllers', []);
+        .module('photocollection.user.authentication.controllers', []);
 
     angular
-        .module('user.authentication.services', ['ngCookies']);
+        .module('photocollection.user.authentication.services', ['ngCookies']);
 })();
