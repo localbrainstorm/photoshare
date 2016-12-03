@@ -1,0 +1,15 @@
+body {
+    padding-top: 70px;
+}
+
+.nav-login {
+    display: none;
+}
+
+.nav-logout {
+    display: none;
+}
+
+.nav-register {
+    display: none;
+}

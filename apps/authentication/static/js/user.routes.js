@@ -18,7 +18,7 @@
             controllerAs: 'vm',
             templateUrl: '../static/partials/login.html'
         }).when('/register', {
-            controller: 'LoginController',
+            controller: 'RegisterController',
             controllerAs: 'vm',
             templateUrl: '../static/partials/register.html'
         }).otherwise({
