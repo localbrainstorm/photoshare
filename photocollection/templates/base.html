@@ -1,0 +1,27 @@
+<html ng-app="photocollection">
+<head>
+    <title>Photo Collection</title>
+
+    <base href="/" />
+
+    {% include 'stylesheets.html' %}
+    {% include 'base_js_files.html' %}
+    {% block javascripts %}{% endblock %}
+
+</head>
+<body>
+
+  <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarController as vm">
+    <ul class="nav navbar-nav pull-right">
+      <li class="nav-login ng-hide" ng-show="!vm.activate()"><a href="javascript:void(0)" ng-click="vm.login()">Login</a></li>
+      <li class="nav-register ng-hide" ng-show="!vm.activate()"><a href="javascript:void(0)" ng-click="vm.register()">Register</a></li>
+      <li class="nav-logout ng-hide" ng-show="vm.activate()"><a href="javascript:void(0)" ng-click="vm.logout()">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div>{% block content %}{% endblock %}</div>
+
+</body>
+
+
+</html>

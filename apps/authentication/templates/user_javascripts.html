@@ -1,0 +1,13 @@
+{% load compress %}
+{% load static %}
+
+{% compress js %} 
+<script type="text/javascript" src="{% static 'js/user.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/user.config.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/user.routes.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/authentication.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/services/authentication.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/controllers/register.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/controllers/login.controller.js' %}"></script>
+
+{% endcompress %}
