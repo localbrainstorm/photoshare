@@ -1,0 +1,10 @@
+{% load compress %}
+{% load static %}
+
+{% compress js %} 
+<script type="text/javascript" src="{% static 'js/s3.fine-uploader.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/photos.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/photos.config.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/photos.routes.js' %}"></script>
+
+{% endcompress %}

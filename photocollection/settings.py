@@ -22,6 +22,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'd%jwp7%svbfd0&-b0-zux8g=&7t(jj(ws*!-p1xu(7ir(d6!89'
 
+# AWS_CLIENT_SECRET_KEY = os.getenv("AWS_CLIENT_SECRET_KEY") 
+AWS_SERVER_PUBLIC_KEY = os.getenv("AWS_SERVER_PUBLIC_KEY")
+AWS_SERVER_SECRET_KEY = os.getenv("AWS_SERVER_SECRET_KEY")
+
+
+AWS_EXPECTED_BUCKET = 'localbrainstormphotoshare'
+AWS_MAX_SIZE = 15000000
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -41,6 +49,7 @@ INSTALLED_APPS = [
     'apps.authentication',
     'compressor',
     'djangobower',
+    'boto3'
 ]
 
 BOWER_INSTALLED_APPS = (

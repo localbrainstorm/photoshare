@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block css %}
+{% include 'photo_stylesheets.html' %}
+{% endblock %}
+
+{% block javascripts %}
+{% include 'photo_javascripts.html' %}
+{% endblock %}
+
+{% block content %}
+<div class="container" ng-app="photocollection.photos">
+  <div class="col-xs-12" ng-view>
+  </div>
+</div>
+{% endblock %}

@@ -21,8 +21,8 @@
             controller: 'RegisterController',
             controllerAs: 'vm',
             templateUrl: '../static/partials/register.html'
-        }).otherwise({
-            redirectTo: '/'
+        }).when('/photos', {
+            templateUrl: '../static/partials/gallery.html'
         });
     }
 })();

@@ -12,7 +12,7 @@
         .module('photocollection.user.config', []);
 
     angular
-        .module('photocollection.user.routes', ['$ngRoute']);
+        .module('photocollection.user.routes', ['ngRoute']);
 
         
 // might be able to remove this bit since
