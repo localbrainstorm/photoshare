@@ -1,21 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('photocollection', [
-        'photocollection.photos',
-        'photocollection.user',
-        'photocollection.layout',
-    ]);
-
     angular
         .module('photocollection.photos', [
-            'photocollection.photos.config',
-            'photocollection.photos.routes'
-        ]);
+            'photocollection.photos.upload'
+        ])
 
-    angular
-        .module('photocollection.photos.config', []);
-
-    angular
-        .module('photocollection.photos.routes', ['ngRoute']);
 })();

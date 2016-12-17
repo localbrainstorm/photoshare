@@ -8,9 +8,11 @@
     config.$inject = ['$routeProvider'];
 
     function config($routeProvider) {
-        console.log('route config')
+        console.log('ROUTES')
         $routeProvider.when('/photos', {
-            templateUrl: '../static/partials/gallery.html'
+            templateUrl: '../static/partials/gallery.html',
+            controller: 'UploadController',
+            controllerAs: 'vm'
         });
     }
 })

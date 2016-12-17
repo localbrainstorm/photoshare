@@ -2,9 +2,13 @@ from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse, HttpRequest
 
+from django.views.decorators.csrf import ensure_csrf_cookie
 from django.views.decorators.http import require_http_methods
 from django.views.generic.base import TemplateView
 from django.views import View
+
+from models import Photo
+from serializers import PhotoSerializer
 
 from rest_framework import viewsets
 
@@ -20,16 +24,23 @@ except ImportError, e:
     print("Install boto with ")
     print("$ pip install boto3")
 
+upload_group = []
+
 # Create your views here.
 class IndexView(TemplateView):
+    print("in IndexView")
     template_name = 'photos.html'
+    #reset the upload group anytime the page is reloaded so it doesn't continue to store the uuids
 
 class HandleS3View(View):
 
     def post(self, request):
         if request.POST.get('uuid', None):
-            print(request.POST.get('uuid'))
-            return make_response(200)
+            # save a reference to the group of photos that have been uploaded
+            upload_group.append(request.POST.get('uuid'))
+            json_upload_group = json.dumps({"images": upload_group})
+            #send the upload group as a comma separated string to the frontend 
+            return make_response(200, json_upload_group)
         else:
             request_payload = json.loads(request.body)                    
             headers = request_payload.get('headers', None)
@@ -58,7 +69,10 @@ class HandleS3View(View):
                 }
             )
             print(response)
-            return make_response(200)
+            #remove the uuid from the photo groups array
+            upload_group.remove(request.path[11:])
+            json_upload_group = json.dumps({"images": upload_group})
+            return make_response(200, json_upload_group)
         else:
             return make_response(500)
 
@@ -69,10 +83,20 @@ class HandleS3View(View):
         return make_response(200)
 
 
+class PhotoView(View):
+    serializer_class = PhotoSerializer
+
+    def post(self, request, *args, **kwargs):
+        print("hellooo")
+        print(request.POST)
+
+
 def make_response(status=200, content=None):
     response = HttpResponse()
     response.status_code = status
     response['Content-Type'] = "application/json"
+    #the response content can be found in s3.fine-uploader.js line 6829 as xhrOrXdr.responseText 
+    #it reads as text rather than a JSON object
     response.content = content
     return response
 

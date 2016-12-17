@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('photocollection.user.routes', ['ngRoute'])
+        .module('photocollection.routes', ['ngRoute'])
         .config(config);
 
     config.$inject = ['$routeProvider'];
@@ -22,7 +22,9 @@
             controllerAs: 'vm',
             templateUrl: '../static/partials/register.html'
         }).when('/photos', {
-            templateUrl: '../static/partials/gallery.html'
+            controller: 'UploadController',
+            controllerAs: 'vm',
+            templateUrl: '../static/partials/gallery.html',
         });
     }
 })();
