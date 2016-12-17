@@ -4,8 +4,17 @@
     angular
         .module('photocollection', [
             'photocollection.user',
-            'photocollection.layout'
+            'photocollection.layout',
+            'photocollection.config',
+            'photocollection.routes',
+            'photocollection.photos'
         ]);
+
+    angular
+        .module('photocollection.config', []);
+
+    angular
+        .module('photocollection.routes', ['ngRoute']);
 
     angular
         .module('photocollection')

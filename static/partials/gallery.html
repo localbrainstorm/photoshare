@@ -1,0 +1,210 @@
+<!--
+    This is a document you can use when you start building the page that will contain
+    one or more Fine Uploader UI instances.  A gallery template that can be customized
+    is located in the text/template script tag below.
+
+    Please see http://docs.fineuploader.com/features/styling.html for information
+    on how to customize this template.
+ -->
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h1>Add images</h1>
+        <div class="col-md-4 col-md-offset-2">
+            <h4 id="count">(0)</h4>
+        </div>
+        <div class="col-md-4 col-md-offset-2">
+            <form class="form-inline" role="form" ng-submit="vm.continueUpload()">
+                <div class="alert alert-danger" ng-show="error" ng-bind="error"></div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <script type="text/template" id="qq-template">
+        <div class="qq-uploader-selector qq-uploader qq-gallery" qq-drop-area-text="Drop files here">
+            <div class="qq-total-progress-bar-container-selector qq-total-progress-bar-container">
+                <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-total-progress-bar-selector qq-progress-bar qq-total-progress-bar"></div>
+            </div>
+            <div class="qq-upload-drop-area-selector qq-upload-drop-area" qq-hide-dropzone>
+                <span class="qq-upload-drop-area-text-selector"></span>
+            </div>
+            <div class="qq-upload-button-selector qq-upload-button">
+                <div>Upload a file</div>
+            </div>
+            <span class="qq-drop-processing-selector qq-drop-processing">
+                <span>Processing dropped files...</span>
+                <span class="qq-drop-processing-spinner-selector qq-drop-processing-spinner"></span>
+            </span>
+            <ul class="qq-upload-list-selector qq-upload-list" role="region" aria-live="polite" aria-relevant="additions removals">
+                <li>
+                    <span role="status" class="qq-upload-status-text-selector qq-upload-status-text"></span>
+                    <div class="qq-progress-bar-container-selector qq-progress-bar-container">
+                        <div role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" class="qq-progress-bar-selector qq-progress-bar"></div>
+                    </div>
+                    <span class="qq-upload-spinner-selector qq-upload-spinner"></span>
+                    <div class="qq-thumbnail-wrapper">
+                        <img class="qq-thumbnail-selector" qq-max-size="120" qq-server-scale>
+                    </div>
+                    <button type="button" class="qq-upload-cancel-selector qq-upload-cancel">X</button>
+                    <button type="button" class="qq-upload-retry-selector qq-upload-retry">
+                        <span class="qq-btn qq-retry-icon" aria-label="Retry"></span>
+                        Retry
+                    </button>
+
+                    <div class="qq-file-info">
+                        <div class="qq-file-name">
+                            <span class="qq-upload-file-selector qq-upload-file"></span>
+                            <span class="qq-edit-filename-icon-selector qq-btn qq-edit-filename-icon" aria-label="Edit filename"></span>
+                        </div>
+                        <input class="qq-edit-filename-selector qq-edit-filename" tabindex="0" type="text">
+                        <span class="qq-upload-size-selector qq-upload-size"></span>
+                        <button type="button" class="qq-btn qq-upload-delete-selector qq-upload-delete">
+                            <span class="qq-btn qq-delete-icon" aria-label="Delete"></span>
+                        </button>
+                        <button type="button" class="qq-btn qq-upload-pause-selector qq-upload-pause">
+                            <span class="qq-btn qq-pause-icon" aria-label="Pause"></span>
+                        </button>
+                        <button type="button" class="qq-btn qq-upload-continue-selector qq-upload-continue">
+                            <span class="qq-btn qq-continue-icon" aria-label="Continue"></span>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+
+            <dialog class="qq-alert-dialog-selector">
+                <div class="qq-dialog-message-selector"></div>
+                <div class="qq-dialog-buttons">
+                    <button type="button" class="qq-cancel-button-selector">Close</button>
+                </div>
+            </dialog>
+
+            <dialog class="qq-confirm-dialog-selector">
+                <div class="qq-dialog-message-selector"></div>
+                <div class="qq-dialog-buttons">
+                    <button type="button" class="qq-cancel-button-selector">No</button>
+                    <button type="button" class="qq-ok-button-selector">Yes</button>
+                </div>
+            </dialog>
+
+            <dialog class="qq-prompt-dialog-selector">
+                <div class="qq-dialog-message-selector"></div>
+                <input type="text">
+                <div class="qq-dialog-buttons">
+                    <button type="button" class="qq-cancel-button-selector">Cancel</button>
+                    <button type="button" class="qq-ok-button-selector">Ok</button>
+                </div>
+            </dialog>
+        </div>
+    </script>
+</div>
+<div id="uploader"></div>
+<script type="text/javascript">
+    // using jQuery
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    // function addForm(images) {
+    //     var nextStep = document.createElement("form")
+    //     nextStep.method = "POST"
+    //     nextStep.action = "/photos/editall"
+    //     var hiddenInputs = document.createElement("input")
+    //     hiddenInputs.type = "hidden"
+    //     hiddenInputs.name = "images"
+    //     hiddenInputs.value = images
+
+    //     var submitButton = document.createElement("input")
+    //     submitButton.type = "submit"
+    //     submitButton.name = "submitButton"
+    //     submitButton.value = "Next"
+
+    //     var csrftokenInput = document.createElement("input")
+    //     csrftokenInput.type = "hidden"
+    //     csrftokenInput.name = "csrfmiddlewaretoken"
+    //     csrftokenInput.value = csrftoken
+
+
+    //     nextStep.appendChild(csrftokenInput)
+    //     nextStep.appendChild(hiddenInputs)
+    //     nextStep.appendChild(submitButton)
+    //     document.body.appendChild(nextStep)
+
+    // }
+
+    var csrftoken = getCookie('csrftoken');
+    console.log(csrftoken)
+    var uploader = new qq.s3.FineUploader({
+        debug: true,
+        element: document.getElementById("uploader"),
+        request: {
+            endpoint: 'localbrainstormphotoshare.s3.amazonaws.com',
+            accessKey: 'AKIAJLAB7R7GVTZQ64PA',
+        },
+        signature: {
+            endpoint: '/s3'
+        },
+        uploadSuccess: {
+            endpoint: '/s3/success'
+        },
+        iframeSupport: {
+            localBlankPagePath: '/success.html'
+        },
+        deleteFile: {
+            enabled: true,
+            endpoint: '/s3/delete'
+        },
+        callbacks: {
+            onDelete: function(id) {
+                this.setDeleteFileParams({filename: this.getName(id)}, id)
+            },
+            onComplete: function(id, name, responseJSON, xhr) {
+                //do something with responseJSON
+                var images = responseJSON["images"]
+                var images_length = responseJSON["images"].length
+                var count = document.getElementById("count")
+                count.innerHTML = "(" + images_length + ")"
+                if(images_length > 0) {
+                    // addForm(images)
+                }
+
+            },
+            onDeleteComplete: function(id, xhr, isError) {
+                try {
+                    var responseObject = JSON.parse(xhr.responseText)
+                    var images = responseObject["images"]
+                    var count = document.getElementById("count")
+                    count.innerHTML = "(" + images.length + ")"
+                    if(images.length > 0) {
+                        //innerHTML a form with images array
+                        // addForm(images)
+                    }
+
+                } catch(exception) {
+                    console.log("couldn't parse responseText")
+                    console.log("Count may not be accurate")
+                }
+                
+            }
+        }
+    });
+</script>
+
+
+

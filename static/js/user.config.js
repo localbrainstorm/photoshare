@@ -1,14 +1,14 @@
-(function () {
-    'use strict';
+// (function () {
+//     'use strict';
 
-    angular
-        .module('photocollection.user.config')
-        .config(config);
+//     angular
+//         .module('photocollection.user.config')
+//         .config(config);
 
-    config.$inject = ['$locationProvider'];
+//     config.$inject = ['$locationProvider'];
 
-    function config($locationProvider) {
-        $locationProvider.html5Mode(true);
-        $locationProvider.hashPrefix('!');
-    }
-})();
+//     function config($locationProvider) {
+//         $locationProvider.html5Mode(true);
+//         $locationProvider.hashPrefix('!');
+//     }
+// })();

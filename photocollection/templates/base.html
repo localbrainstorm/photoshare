@@ -1,12 +1,15 @@
 <html ng-app="photocollection">
 <head>
-    <title>Photo Collection</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Photo Collection</title>
 
-    <base href="/" />
+  <base href="/" />
 
-    {% include 'stylesheets.html' %}
-    {% include 'base_js_files.html' %}
-    {% block javascripts %}{% endblock %}
+  {% include 'stylesheets.html' %}
+  {%block css %}{% endblock %}
+  {% include 'base_js_files.html' %}
+  {% block javascripts %}{% endblock %}
 
 </head>
 <body>
