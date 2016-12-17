@@ -2,12 +2,27 @@
 {% load static %}
 
 {% compress js %} 
+<!-- basic -->
 <script type="text/javascript" src="{% static 'jquery/dist/jquery.js' %}"></script>
 <script type="text/javascript" src="{% static 'angular/angular.js' %}"></script>
 <script type="text/javascript" src="{% static 'angular-route/angular-route.js' %}"></script>
 <script type="text/javascript" src="{% static 'angular-cookies/angular-cookies.js' %}"></script>
 <script type="text/javascript" src="{% static 'bootstrap/dist/js/bootstrap.js' %}"></script>
+<!-- layout -->
 <script type="text/javascript" src="{% static 'js/photocollection.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/layout.module.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/controllers/navbar.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/photocollection.config.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/photocollection.routes.js' %}"></script>
+<!-- user -->
+<script type="text/javascript" src="{% static 'js/user.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/authentication.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/services/authentication.service.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/controllers/register.controller.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/controllers/login.controller.js' %}"></script>
+<!-- photos -->
+<script type="text/javascript" src="{% static 'js/s3.fine-uploader.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/photos.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/photos.upload.module.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/controllers/upload.controller.js' %}"></script>
 {% endcompress %}
