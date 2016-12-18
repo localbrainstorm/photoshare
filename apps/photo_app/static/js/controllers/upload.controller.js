@@ -5,10 +5,11 @@
         .module('photocollection.photos.upload.controllers')
         .controller('UploadController', UploadController);
 
-    UploadController.$inject = ['$window', '$scope'];
+
+    UploadController.$inject = ['$window', '$scope', 'UploadService'];
 
 
-    function UploadController($window, $scope) {
+    function UploadController($window, $scope, UploadService) {
         var vm = this;
 
         vm.continueUpload = continueUpload;
@@ -17,8 +18,13 @@
         function continueUpload() {
             vm.images_array = $window.images_array;
             //we need to add in an error if images array length is less than 1
-            console.log("in upload controller")
-            console.log(vm.images_array)
+						if (vm.images_array.length < 1) {
+							vm.error = {
+								'message': "failed to upload!"
+							}
+						} else {
+							UploadService.createCollection(vm.images_array);
+						}
         }
     }
 })();
