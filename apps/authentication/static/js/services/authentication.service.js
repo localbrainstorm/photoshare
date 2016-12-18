@@ -57,10 +57,10 @@
 
         // begin Session aka cookie control. This means users will need to have cookies enabled to use application. We should probably add a caveat somewhere to that extent.
         function getAuthenticatedAccount() {
-            if(!$cookies.authenticatedAccount) {
+            if(!$cookies.get('authenticatedAccount')) {
                 return;
             }
-            return JSON.parse($cookies.authenticatedAccount);
+            return JSON.parse($cookies.get('authenticatedAccount'));
         }
 
         function isAuthenticated() {

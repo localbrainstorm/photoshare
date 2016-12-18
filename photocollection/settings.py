@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 """
 
 import os
+import secrets
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -19,13 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'd%jwp7%svbfd0&-b0-zux8g=&7t(jj(ws*!-p1xu(7ir(d6!89'
-
-# AWS_CLIENT_SECRET_KEY = os.getenv("AWS_CLIENT_SECRET_KEY") 
-AWS_SERVER_PUBLIC_KEY = "AKIAJLAB7R7GVTZQ64PA"
-AWS_SERVER_SECRET_KEY = "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"
-
+SECRET_KEY = secrets.SECRET_KEY
+AWS_SERVER_PUBLIC_KEY = secrets.AWS_SERVER_PUBLIC_KEY
+AWS_SERVER_SECRET_KEY = secrets.AWS_SERVER_SECRET_KEY
+AWS_SERVER_PUBLIC_KEY = "AKIAJIG4CNKS7YSSEYCA"
 
 AWS_EXPECTED_BUCKET = 'localbrainstormphotoshare'
 AWS_MAX_SIZE = 15000000
@@ -49,7 +47,8 @@ INSTALLED_APPS = [
     'apps.authentication',
     'compressor',
     'djangobower',
-    'boto3'
+    'boto3',
+	'django_extensions',
 ]
 
 BOWER_INSTALLED_APPS = (
