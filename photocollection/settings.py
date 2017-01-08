@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 SECRET_KEY = secrets.SECRET_KEY
-AWS_SERVER_PUBLIC_KEY = secrets.AWS_SERVER_PUBLIC_KEY
+# AWS_SERVER_PUBLIC_KEY = secrets.AWS_SERVER_PUBLIC_KEY
 AWS_SERVER_SECRET_KEY = secrets.AWS_SERVER_SECRET_KEY
 AWS_SERVER_PUBLIC_KEY = "AKIAJIG4CNKS7YSSEYCA"
 

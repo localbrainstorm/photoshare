@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html ng-app="photocollection">
 <head>
   <meta charset="utf-8">
@@ -19,6 +20,7 @@
       <li class="nav-login ng-hide" ng-show="!vm.activate()"><a href="javascript:void(0)" ng-click="vm.login()">Login</a></li>
       <li class="nav-register ng-hide" ng-show="!vm.activate()"><a href="javascript:void(0)" ng-click="vm.register()">Register</a></li>
       <li class="nav-logout ng-hide" ng-show="vm.activate()"><a href="javascript:void(0)" ng-click="vm.logout()">Logout</a></li>
+      <li class="ng-hide" ng-show="vm.activate()"><a href="javascript:void(0)" ng-click="vm.photos()">Add photos</a></li>
     </ul>
   </nav>
 
@@ -28,3 +30,4 @@
 
 
 </html>
+<!-- <script type="text/javascript" src="ng-tags-input.js"></script> -->

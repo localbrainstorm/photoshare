@@ -25,6 +25,10 @@
             controller: 'UploadController',
             controllerAs: 'vm',
             templateUrl: '../static/partials/gallery.html',
+        }).when('/collections', {
+            controller: 'UploadController',
+            controllerAs: 'vm',
+            templateUrl: '../static/partials/addImagesPtTwo.html'
         });
     }
 })();

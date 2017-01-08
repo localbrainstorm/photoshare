@@ -15,6 +15,7 @@
         vm.login = login;
         vm.register = register;
         vm.activate = activate;
+        vm.photos = photos;
 
         function logout() {
             console.log('logging out')
@@ -27,6 +28,10 @@
 
         function register() {
             window.location = '/register';
+        }
+
+        function photos() {
+            window.location = '/photos'
         }
 
         function activate() {

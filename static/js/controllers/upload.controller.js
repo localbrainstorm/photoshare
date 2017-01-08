@@ -5,6 +5,7 @@
         .module('photocollection.photos.upload.controllers')
         .controller('UploadController', UploadController);
 
+
     UploadController.$inject = ['$window', '$scope', 'UploadService'];
 
 
@@ -12,20 +13,41 @@
         var vm = this;
 
         vm.continueUpload = continueUpload;
+        vm.formatCollectionLink = formatCollectionLink;
         vm.selectedImages = false;
+        vm.addCollectionData = addCollectionData;
+        vm.loadTags = loadTags;
 
         function continueUpload() {
             vm.images_array = $window.images_array;
             //we need to add in an error if images array length is less than 1
-						if (!vm.images_array || vm.images_array.length) {
+						if (vm.images_array.length < 1) {
 							vm.error = {
 								'message': "failed to upload!"
 							}
-							console.log('we have no images');
 						} else {
-							console.log('calling factory');
-							Upload.createCollection(vm.images_array);
+							UploadService.createCollection(vm.images_array);
 						}
+        }
+
+        function formatCollectionLink() {
+            vm.collection_data = UploadService.getCollection()
+            var thumb = vm.collection_data.images_array[0]
+            // console.log(thumb)
+            vm.thumb_link = "https://s3-us-west-2.amazonaws.com/localbrainstormphotoshare/" + thumb + ".jpg"
+            vm.number_of_images = vm.collection_data.images_array.length
+            //get image preview from aws
+        }
+
+        function loadTags(){
+            vm.existingTags = UploadService.loadTags()
+            console.log(vm.existingTags)
+
+        }
+
+        function addCollectionData(){
+            var collection_id = vm.collection_data.collection
+            UploadService.addCollectionData(vm.name, vm.description, vm.tags, collection_id)
         }
     }
 })();

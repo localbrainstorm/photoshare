@@ -65,9 +65,10 @@
 		}
 
 		function loadTags(){
-			return $http.get('/tags/').then(function (response) {
-				return response.data
+			var promise = $http.get('/tags/').then(function (response) {
+				console.log(response.data)
 			});
+			console.log(promise)
 		}
 
 
