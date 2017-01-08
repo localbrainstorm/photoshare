@@ -7,7 +7,7 @@ from django.views.decorators.http import require_http_methods
 from django.views.generic.base import TemplateView, View
 from django.views import View
 
-from models import Photo, Collection
+from models import Photo, Collection, Tag
 from serializers import PhotoSerializer
 
 from rest_framework import viewsets
@@ -68,7 +68,6 @@ class HandleS3View(View):
                     }]
                 }
             )
-            print(response)
             #remove the uuid from the photo groups array
             upload_group.remove(request.path[11:])
             json_upload_group = json.dumps({"images": upload_group})
@@ -130,12 +129,49 @@ def sign_headers(headers):
     }
 
 class CollectionView(View):
-	def post(self, request):
-		print 'in add_collection method'
-		if request.method == 'POST':
-			print request.body
-			body = json.loads(request.body)
-		Collection.objects.new_collection(body)
+    def post(self, request):
+        # First, we create collection if it doesn't exist
+        # Second, add the tags to the collection
+        # Update the collection
+        # Last, we update the photos with tags, title, description and user - we will be looping through the tags twice to avoid getting too messy/to try and keep the functionality of everything as modular as possible
+
+        upload_group = []
+        if request.method == 'POST':
+            body = json.loads(request.body)
+            # if the collection already exists
+            need_to_create_collection = self.need_collection(body)
+            # the collection gets created in the first step of uploading - before the form with title and description. The photos get created with the collection
+            if need_to_create_collection:
+                data = Collection.objects.new_collection(body)
+                return make_response(200, json.dumps(data))
+            else:
+                collection = Collection.objects.get_collection_query_set(body['collection_id'])
+                if self.tags_are_present(body):
+                    tags_list = Tag.objects.create_or_update(body['tags'], body['collection_id'])
+                Collection.objects.update_collection(collection, body['name'], body['description'])
+                #finally update the photos
+                photos = Photo.objects.update_all(collection, body['name'], body['description'], tags_list)  
+                return make_response(200, json.dumps(photos))
+
+    def tags_are_present(self, body):
+        if body.has_key("tags") and len(body['tags']) > 0:
+            return True
+        else:
+            return False
+
+    def need_collection(self, body):
+        if body.has_key("collection_id"):
+            return False
+        else:
+            return True
 
 
-		return redirect('index')
+class TagView(View):
+    def get(self, request):
+        all_tags = []
+        tags = list(Tag.objects.all())
+        print tags
+        for tag in tags:
+            all_tags.append({"name": tag.name, "id": tag.id})
+        return make_response(200, json.dumps(all_tags))
+

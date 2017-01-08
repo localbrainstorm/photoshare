@@ -4,12 +4,13 @@
     angular
         .module('photocollection.photos.upload', [
             'photocollection.photos.upload.controllers',
-            'photocollection.photos.upload.services'
+            'photocollection.photos.upload.services',
+            'ngTagsInput'
         ]);
 
     angular
         .module('photocollection.photos.upload.controllers', []);
 
     angular
-        .module('photocollection.photos.upload.services', []);
+        .module('photocollection.photos.upload.services', ['ngCookies']);
 })();

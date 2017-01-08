@@ -1,0 +1,27 @@
+<div class="row" ng-init="vm.formatCollectionLink()">
+    <div class="col-md-4 col-md-offset-4">
+        <h1>Add images</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-6 col-md-4 col-lg-2">
+        <img src="{{vm.thumb_link}}" style="width:100px; height:100px;">
+        <p>({{vm.number_of_images}})</p>
+    </div>
+</div>
+<form role="form" ng-submit="vm.addCollectionData()">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" ng-model="vm.name"/>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" rows="4" ng-model="vm.description"></textarea>
+    </div>
+    <h3>ToDo: Location</h3>
+    <label for="tags">Tags</label>
+    <tags-input ng-model="vm.tags"></tags-input>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Send</button>
+    </div>
+</form>

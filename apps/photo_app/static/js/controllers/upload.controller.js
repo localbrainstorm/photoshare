@@ -13,7 +13,12 @@
         var vm = this;
 
         vm.continueUpload = continueUpload;
+        vm.formatCollectionLink = formatCollectionLink;
         vm.selectedImages = false;
+        vm.addCollectionData = addCollectionData;
+        vm.loadTags = loadTags;
+        vm.addToTags = addToTags;
+        vm.collectionTags = [];
 
         function continueUpload() {
             vm.images_array = $window.images_array;
@@ -25,6 +30,34 @@
 						} else {
 							UploadService.createCollection(vm.images_array);
 						}
+        }
+
+        function formatCollectionLink() {
+            vm.collection_data = UploadService.getCollection()
+            var thumb = vm.collection_data.images_array[0]
+            // console.log(thumb)
+            vm.thumb_link = "https://s3-us-west-2.amazonaws.com/localbrainstormphotoshare/" + thumb + ".jpg"
+            vm.number_of_images = vm.collection_data.images_array.length
+            //get image preview from aws
+        }
+
+        function loadTags(){
+            var promise = UploadService.loadTags().then(function (response) {
+                console.log(response);
+                vm.existingTags = response;
+            })
+        }
+
+        function addCollectionData(){
+            var collection_id = vm.collection_data.collection
+            console.log(vm.name)
+            console.log(vm.description)
+            console.log(vm.collectionTags)
+            UploadService.addCollectionData(vm.name, vm.description, vm.collectionTags, collection_id)
+        }
+
+        function addToTags(tag){
+            vm.collectionTags.push({"text":tag.name, "id":tag.id})
         }
     }
 })();
