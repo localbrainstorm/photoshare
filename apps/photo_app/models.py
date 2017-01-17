@@ -72,7 +72,7 @@ class TagManager(models.Manager):
 			return False
 
 	def get_tag(self, tag_id):
-		return Tag.objects.filter(id=tag_id)
+		return Tag.objects.get(id=tag_id)
 
 
 class Collection(models.Model):
