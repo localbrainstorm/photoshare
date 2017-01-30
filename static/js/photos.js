@@ -3,7 +3,8 @@
 
     angular
         .module('photocollection.photos', [
-            'photocollection.photos.upload'
+            'photocollection.photos.upload',
+            'photocollection.photos.collections'
         ])
 
 })();

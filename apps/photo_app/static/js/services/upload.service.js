@@ -24,7 +24,7 @@
 		return UploadService;
 
 		function createCollection(images_array){
-			return $http.post('/collection/', {
+			return $http.post('/collections/', {
 				'images_array': images_array,
 				'user': Authentication.getAuthenticatedAccount()
 			}).then(successFunction, errorFunction);
@@ -32,7 +32,7 @@
 
 		function successFunction(response){
 			UploadService.storeCollection(response.data)
-			window.location = '/collections';
+			window.location = '/collections/';
 		}
 
 		function errorFunction(){

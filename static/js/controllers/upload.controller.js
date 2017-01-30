@@ -17,6 +17,8 @@
         vm.selectedImages = false;
         vm.addCollectionData = addCollectionData;
         vm.loadTags = loadTags;
+        vm.addToTags = addToTags;
+        vm.collectionTags = [];
 
         function continueUpload() {
             vm.images_array = $window.images_array;
@@ -40,14 +42,18 @@
         }
 
         function loadTags(){
-            vm.existingTags = UploadService.loadTags()
-            console.log(vm.existingTags)
-
+            var promise = UploadService.loadTags().then(function (response) {
+                vm.existingTags = response;
+            })
         }
 
         function addCollectionData(){
             var collection_id = vm.collection_data.collection
-            UploadService.addCollectionData(vm.name, vm.description, vm.tags, collection_id)
+            UploadService.addCollectionData(vm.name, vm.description, vm.collectionTags, collection_id)
+        }
+
+        function addToTags(tag){
+            vm.collectionTags.push({"text":tag.name, "id":tag.id})
         }
     }
 })();
