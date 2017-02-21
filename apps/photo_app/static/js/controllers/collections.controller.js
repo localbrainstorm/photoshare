@@ -15,8 +15,10 @@
         vm.getAllCollections = getAllCollections;
 
         function getAllCollections() {
-            vm.allCollections = CollectionService.getAllCollections();
-            console.log(vm.allCollections)
+            var promise = CollectionService.getAllCollections().then(function (response) {
+                vm.allCollections = JSON.parse(response);
+                console.log(vm.allCollections)
+            });
         }
     }
 

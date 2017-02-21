@@ -129,12 +129,16 @@ def sign_headers(headers):
     }
 
 class CollectionView(View):
+    def get(self, request):
+        print("in here")
+        collections = Collection.objects.get_all_collections()
+        return make_response(200, json.dumps(collections))
+
     def post(self, request):
         # First, we create collection if it doesn't exist
         # Second, add the tags to the collection
         # Update the collection
         # Last, we update the photos with tags, title, description and user - we will be looping through the tags twice to avoid getting too messy/to try and keep the functionality of everything as modular as possible
-
         upload_group = []
         if request.method == 'POST':
             body = json.loads(request.body)

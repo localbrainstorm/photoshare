@@ -15,10 +15,10 @@
 
         function getAllCollections() {
             console.log("hello")
-            $http.get('/collections/').then(function(err, response) {
+            return $http.get('/collections/').then(function (response, err) {
                 console.log(err)
                 console.log(response);
-                return response;
+                return response.data;
             })
         }
 

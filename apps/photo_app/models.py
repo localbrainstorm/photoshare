@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core import serializers
 from ..authentication.models import Account
 
 import json
@@ -36,6 +37,11 @@ class CollectionManager(models.Manager):
 	def get_collection_query_set(self, collection_id):
 		return Collection.objects.filter(id=collection_id)
 
+	def get_all_collections(self):
+		collections = Collection.objects.in_bulk()
+		print(collections)
+			
+
 
 class PhotoManager(models.Manager):
 	def update_all(self, collection, name, description, tags):
@@ -47,6 +53,11 @@ class PhotoManager(models.Manager):
 				tag.photos.add(photo)
 			photo_list_to_return.append(photo.id)
 		return photo_list_to_return
+
+	def get_all_photos_in_collection(self, collection):
+		photos = Photo.objects.filter(collection=collection)
+		print(photos.values())
+		return photos
 		
 
 

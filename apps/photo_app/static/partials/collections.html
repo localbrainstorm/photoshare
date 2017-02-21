@@ -1,4 +1,7 @@
 <div class="row" ng-init="vm.getAllCollections()">
-
-
+    <div class="row">
+        <ul>
+            <li ng-repeat="collection in vm.allCollections track by $index">{{collection.fields.name}}</li>
+        </ul>
+    </div>
 </div>
