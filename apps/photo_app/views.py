@@ -132,6 +132,7 @@ class CollectionView(View):
     def get(self, request):
         print("in here")
         collections = Collection.objects.get_all_collections()
+        print(collections)
         return make_response(200, json.dumps(collections))
 
     def post(self, request):
