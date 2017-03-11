@@ -38,8 +38,16 @@ class CollectionManager(models.Manager):
 		return Collection.objects.filter(id=collection_id)
 
 	def get_all_collections(self):
-		collections = Collection.objects.in_bulk()
-		print(collections)
+		collectionsQuerySet = Collection.objects.all()
+		# collections = serializers.serialize('json', list(collectionsQuerySet))
+		# jsonCollections = json.loads(collections)
+		# return Collection.objects.all()
+		for collection in collectionsQuerySet:
+		# get all the photos
+		# get a count of the photos 
+		# get the first photo
+			return collection
+
 			
 
 
