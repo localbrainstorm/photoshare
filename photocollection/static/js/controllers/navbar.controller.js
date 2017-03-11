@@ -16,9 +16,9 @@
         vm.register = register;
         vm.activate = activate;
         vm.photos = photos;
+        vm.collections = collections;
 
         function logout() {
-            console.log('logging out')
             Authentication.logout();
         }
 
@@ -31,11 +31,14 @@
         }
 
         function photos() {
-            window.location = '/photos'
+            window.location = '/photos';
+        }
+
+        function collections() {
+            window.location = '/collections';
         }
 
         function activate() {
-            console.log(Authentication.isAuthenticated())
             return Authentication.isAuthenticated();
         }
     }

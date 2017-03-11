@@ -32,7 +32,7 @@
 
 		function successFunction(response){
 			UploadService.storeCollection(response.data)
-			window.location = '/collections/';
+			window.location = '/postCollection/';
 		}
 
 		function errorFunction(){

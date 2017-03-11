@@ -10,14 +10,13 @@
 
     function CollectionsController($window, $scope, CollectionService) {
         var vm = this;
-        console.log("what up")
 
         vm.getAllCollections = getAllCollections;
+        vm.imagePrefix = "https://s3-us-west-2.amazonaws.com/localbrainstormphotoshare/";
 
         function getAllCollections() {
             var promise = CollectionService.getAllCollections().then(function (response) {
-                vm.allCollections = JSON.parse(response);
-                console.log(vm.allCollections)
+                vm.allCollections = response;
             });
         }
     }

@@ -28,7 +28,6 @@
 								'message': "failed to upload!"
 							}
 						} else {
-                            console.log(vm.images_array)
 							UploadService.createCollection(vm.images_array);
 						}
         }

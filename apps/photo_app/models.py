@@ -43,16 +43,13 @@ class CollectionManager(models.Manager):
 		collection_list_to_return = [];
 		collection_list_index = 0;
 		for collection in collectionsQuerySet:
-			collection_list_to_return.append({"name": collection.name, "id": collection.id, "description": collection.description, "photos": []})
+			collection_list_to_return.append({"name": collection.name, "id": collection.id, "description": collection.description})
 			count = Photo.objects.filter(collection=collection).count();
-			collection_list_to_return[collection_list_index]["number_of_photos"] = count;
-			photo = Photo.objects.first()
-			collection_list_to_return[collection_list_index]['photos'].append({photo.uuid});
-			collection_list_index += 1;
-		# get a count of the photos 
-		# get the first photo
-		print collection_list_to_return
-
+			collection_list_to_return[collection_list_index]["number_of_photos"] = count
+			photo = Photo.objects.filter(collection=collection).first();
+			collection_list_to_return[collection_list_index]['photos'] = photo.uuid
+			collection_list_index += 1
+		return collection_list_to_return
 			
 
 

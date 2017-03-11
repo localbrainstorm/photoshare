@@ -15,9 +15,7 @@
 
         function getAllCollections() {
             console.log("hello")
-            return $http.get('/collections/').then(function (response, err) {
-                console.log(err)
-                console.log(response);
+            return $http.get('/collections/').then(function (response) {
                 return response.data;
             })
         }

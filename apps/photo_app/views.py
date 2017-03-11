@@ -10,7 +10,7 @@ from django.views import View
 from models import Photo, Collection, Tag
 from serializers import PhotoSerializer
 
-from rest_framework import viewsets
+from rest_framework import viewsets, views
 
 import base64, hmac, hashlib, json, sys
 
@@ -128,35 +128,37 @@ def sign_headers(headers):
         'signature': base64.b64encode(hmac.new(settings.AWS_SERVER_SECRET_KEY, headers, hashlib.sha1).digest())
     }
 
-class CollectionView(View):
+class CollectionView(views.APIView):
     def get(self, request):
-        print("in here")
         collections = Collection.objects.get_all_collections()
-        print(collections)
         return make_response(200, json.dumps(collections))
 
     def post(self, request):
+        print "post"
         # First, we create collection if it doesn't exist
         # Second, add the tags to the collection
         # Update the collection
         # Last, we update the photos with tags, title, description and user - we will be looping through the tags twice to avoid getting too messy/to try and keep the functionality of everything as modular as possible
         upload_group = []
-        if request.method == 'POST':
-            body = json.loads(request.body)
-            # if the collection already exists
-            need_to_create_collection = self.need_collection(body)
-            # the collection gets created in the first step of uploading - before the form with title and description. The photos get created with the collection
-            if need_to_create_collection:
-                data = Collection.objects.new_collection(body)
-                return make_response(200, json.dumps(data))
-            else:
-                collection = Collection.objects.get_collection_query_set(body['collection_id'])
-                if self.tags_are_present(body):
-                    tags_list = Tag.objects.create_or_update(body['tags'], body['collection_id'])
-                Collection.objects.update_collection(collection, body['name'], body['description'])
-                #finally update the photos
-                photos = Photo.objects.update_all(collection, body['name'], body['description'], tags_list)  
-                return make_response(200, json.dumps(photos))
+        body = request.data
+        print body
+        # body = json.loads(request.body)
+        # if the collection already exists
+        need_to_create_collection = self.need_collection(body)
+        print need_to_create_collection
+        # the collection gets created in the first step of uploading - before the form with title and description. The photos get created with the collection
+        if need_to_create_collection:
+            data = Collection.objects.new_collection(body)
+            print "in need to create collection"
+            return make_response(200, json.dumps(data))
+        else:
+            collection = Collection.objects.get_collection_query_set(body['collection_id'])
+            if self.tags_are_present(body):
+                tags_list = Tag.objects.create_or_update(body['tags'], body['collection_id'])
+            Collection.objects.update_collection(collection, body['name'], body['description'])
+            #finally update the photos
+            photos = Photo.objects.update_all(collection, body['name'], body['description'], tags_list)  
+            return make_response(200, json.dumps(photos))
 
     def tags_are_present(self, body):
         if body.has_key("tags") and len(body['tags']) > 0:
