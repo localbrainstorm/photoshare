@@ -5,9 +5,9 @@
 		.module('photocollection.photos.upload.services')
 		.factory('UploadService', UploadService);
 
-	UploadService.$inject = ['$http', 'Authentication', '$cookies'];
+	UploadService.$inject = ['$http', 'Authentication', '$cookies', '$window'];
 
-	function UploadService($http, Authentication, $cookies){
+	function UploadService($http, Authentication, $cookies, $window){
 		var UploadService = {
 			createCollection: createCollection,
 			successFunction: successFunction,
@@ -24,7 +24,7 @@
 		return UploadService;
 
 		function createCollection(images_array){
-			return $http.post('/collection/', {
+			return $http.post('/collections/', {
 				'images_array': images_array,
 				'user': Authentication.getAuthenticatedAccount()
 			}).then(successFunction, errorFunction);
@@ -32,7 +32,7 @@
 
 		function successFunction(response){
 			UploadService.storeCollection(response.data)
-			window.location = '/collections';
+			window.location = '/postCollection/';
 		}
 
 		function errorFunction(){
@@ -48,7 +48,7 @@
 		}
 
 		function addCollectionData(name, description, tags, collection_id){
-			return $http.post('/collection/', {
+			return $http.post('/collections/', {
 				name: name,
 				description: description,
 				tags: tags,
@@ -57,7 +57,7 @@
 		}
 
 		function successUpdateFunction(response){
-			console.log("successfully updated")
+			window.location = '/collections';
 		}
 
 		function errorUpdateFunction(){
@@ -65,10 +65,9 @@
 		}
 
 		function loadTags(){
-			var promise = $http.get('/tags/').then(function (response) {
-				console.log(response.data)
+			return $http.get('/tags/').then(function (response) {
+				return response.data
 			});
-			console.log(promise)
 		}
 
 

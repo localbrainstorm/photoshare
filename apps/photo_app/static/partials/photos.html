@@ -1,0 +1,8 @@
+<div class="row" ng-init="vm.getAllCollections()">
+    <div class="row">
+        <div ng-repeat="photo in vm.allPhotosInCollection track by $index">
+            <img ng-src="{{vm.imagePrefix}}{{ photo.uuid }}.jpg">
+            <p></p>
+        </div>
+    </div>
+</div>

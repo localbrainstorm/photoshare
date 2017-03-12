@@ -43,16 +43,12 @@
 
         function loadTags(){
             var promise = UploadService.loadTags().then(function (response) {
-                console.log(response);
                 vm.existingTags = response;
             })
         }
 
         function addCollectionData(){
             var collection_id = vm.collection_data.collection
-            console.log(vm.name)
-            console.log(vm.description)
-            console.log(vm.collectionTags)
             UploadService.addCollectionData(vm.name, vm.description, vm.collectionTags, collection_id)
         }
 

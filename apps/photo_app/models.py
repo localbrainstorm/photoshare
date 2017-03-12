@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core import serializers
+from django.db.models import Count
 from ..authentication.models import Account
 
 import json
@@ -36,6 +38,20 @@ class CollectionManager(models.Manager):
 	def get_collection_query_set(self, collection_id):
 		return Collection.objects.filter(id=collection_id)
 
+	def get_all_collections(self):
+		collectionsQuerySet = list(Collection.objects.all().order_by('-created_at'))
+		collection_list_to_return = [];
+		collection_list_index = 0;
+		for collection in collectionsQuerySet:
+			collection_list_to_return.append({"name": collection.name, "id": collection.id, "description": collection.description})
+			count = Photo.objects.filter(collection=collection).count();
+			collection_list_to_return[collection_list_index]["number_of_photos"] = count
+			photo = Photo.objects.filter(collection=collection).first();
+			collection_list_to_return[collection_list_index]['photos'] = photo.uuid
+			collection_list_index += 1
+		return collection_list_to_return
+			
+
 
 class PhotoManager(models.Manager):
 	def update_all(self, collection, name, description, tags):
@@ -47,6 +63,10 @@ class PhotoManager(models.Manager):
 				tag.photos.add(photo)
 			photo_list_to_return.append(photo.id)
 		return photo_list_to_return
+
+	def get_all_photos_in_collection(self, collection):
+		photos = list(Photo.objects.filter(collection=collection).values());
+		return photos
 		
 
 
