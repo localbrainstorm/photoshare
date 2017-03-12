@@ -1,0 +1,10 @@
+.gallery-box{
+    display: inline-block;
+    margin: 10px;
+    width: 150px;
+    height: 150px;
+}
+img{
+    width:80%; /* you can use % */
+    height: auto;
+}

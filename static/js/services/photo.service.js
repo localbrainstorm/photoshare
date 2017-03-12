@@ -15,7 +15,6 @@
 
         function getAllPhotosInCollection(id) {
             return $http.get('/collections/photos/' + id).then(function (response) {
-                console.log(response)
                 return response.data;
             })
         }

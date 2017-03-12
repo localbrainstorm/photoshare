@@ -39,7 +39,7 @@ class CollectionManager(models.Manager):
 		return Collection.objects.filter(id=collection_id)
 
 	def get_all_collections(self):
-		collectionsQuerySet = list(Collection.objects.all())
+		collectionsQuerySet = list(Collection.objects.all().order_by('-created_at'))
 		collection_list_to_return = [];
 		collection_list_index = 0;
 		for collection in collectionsQuerySet:

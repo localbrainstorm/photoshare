@@ -5,9 +5,9 @@
 		.module('photocollection.photos.upload.services')
 		.factory('UploadService', UploadService);
 
-	UploadService.$inject = ['$http', 'Authentication', '$cookies'];
+	UploadService.$inject = ['$http', 'Authentication', '$cookies', '$window'];
 
-	function UploadService($http, Authentication, $cookies){
+	function UploadService($http, Authentication, $cookies, $window){
 		var UploadService = {
 			createCollection: createCollection,
 			successFunction: successFunction,
@@ -48,7 +48,7 @@
 		}
 
 		function addCollectionData(name, description, tags, collection_id){
-			return $http.post('/collection/', {
+			return $http.post('/collections/', {
 				name: name,
 				description: description,
 				tags: tags,
@@ -57,7 +57,7 @@
 		}
 
 		function successUpdateFunction(response){
-			console.log("successfully updated")
+			window.location = '/collections';
 		}
 
 		function errorUpdateFunction(){

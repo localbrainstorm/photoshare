@@ -1,6 +1,6 @@
 <div class="row" ng-init="vm.getAllCollections()">
     <div class="row">
-        <div ng-repeat="collection in vm.allCollections track by $index">
+        <div class = "gallery-box" ng-repeat="collection in vm.allCollections track by $index">
             <p>{{ collection.name }}</p>
             <p>{{ collection.description }}</p>
             <img ng-src="{{vm.imagePrefix}}{{ collection.photos }}.jpg" ng-click="vm.loadPhotosWithId(collection.id)">
