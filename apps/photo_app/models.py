@@ -65,8 +65,7 @@ class PhotoManager(models.Manager):
 		return photo_list_to_return
 
 	def get_all_photos_in_collection(self, collection):
-		photos = Photo.objects.filter(collection=collection)
-		print(photos.values())
+		photos = list(Photo.objects.filter(collection=collection).values());
 		return photos
 		
 

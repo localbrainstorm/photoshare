@@ -33,6 +33,10 @@
             controller: 'CollectionsController',
             controllerAs: 'vm',
             templateUrl: '../static/partials/collections.html'
+        }).when('/photos/:id', {
+            controller: 'PhotosController',
+            controllerAs: 'vm',
+            templateUrl: '../static/partials/photos.html'
         });
     }
 })();

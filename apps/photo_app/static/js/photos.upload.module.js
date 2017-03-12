@@ -32,3 +32,20 @@
         .module('photocollection.photos.collections.services', []);
         
 })();
+
+(function () {
+    'use strict';
+
+    angular
+        .module('photocollection.photos.photos', [
+            'photocollection.photos.photos.controllers',
+            'photocollection.photos.photos.services'
+        ]);
+
+    angular
+        .module('photocollection.photos.photos.controllers', []);
+
+    angular
+        .module('photocollection.photos.photos.services', []);
+        
+})();

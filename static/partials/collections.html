@@ -1,4 +1,8 @@
-<div class="row" ng-init="vm.getAllPhotos()">
-
-
+<div class="row" ng-init="vm.getAllCollections()">
+    <div class="row">
+        <div ng-repeat="collection in vm.allCollections track by $index">
+            <img ng-src="{{vm.imagePrefix}}{{ collection.photos }}.jpg" ng-click="vm.loadPhotosWithId(collection.id)">
+            <p>{{ collection.number_of_photos }}</p>
+        </div>
+    </div>
 </div>

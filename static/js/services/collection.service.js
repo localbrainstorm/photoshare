@@ -8,15 +8,16 @@
     CollectionService.$inject = ['$http'];
 
     function CollectionService($http) {
+        var CollectionService = {
+            getAllCollections: getAllCollections,
+        };
+        return CollectionService;
 
         function getAllCollections() {
-            $http.get('/collections/').then(function(err, response) {
-                console.log(response);
-                return response;
+            return $http.get('/collections/').then(function (response) {
+                return response.data;
             })
         }
-
-        return CollectionService;
 
     }
 })();

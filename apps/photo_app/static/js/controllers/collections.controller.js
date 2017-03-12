@@ -13,11 +13,16 @@
 
         vm.getAllCollections = getAllCollections;
         vm.imagePrefix = "https://s3-us-west-2.amazonaws.com/localbrainstormphotoshare/";
+        vm.loadPhotosWithId = loadPhotosWithId;
 
         function getAllCollections() {
             var promise = CollectionService.getAllCollections().then(function (response) {
                 vm.allCollections = response;
             });
+        }
+
+        function loadPhotosWithId(id) {
+            window.location = '/photos/' + id
         }
     }
 

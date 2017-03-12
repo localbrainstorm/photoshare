@@ -14,13 +14,10 @@
         return CollectionService;
 
         function getAllCollections() {
-            console.log("hello")
             return $http.get('/collections/').then(function (response) {
                 return response.data;
             })
         }
-
-        return CollectionService;
 
     }
 })();

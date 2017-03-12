@@ -132,7 +132,6 @@
                 this.setDeleteFileParams({filename: this.getName(id)}, id)
             },
             onComplete: function(id, name, responseJSON, xhr) {
-                //do something with responseJSON
                 images_array = responseJSON["images"]
                 var images_length = images_array.length
                 var count = document.getElementById("count")

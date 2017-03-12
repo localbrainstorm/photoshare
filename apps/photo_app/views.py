@@ -9,6 +9,7 @@ from django.views import View
 
 from models import Photo, Collection, Tag
 from serializers import PhotoSerializer
+from utils import date_handler
 
 from rest_framework import viewsets, views
 
@@ -28,9 +29,10 @@ upload_group = []
 
 # Create your views here.
 class IndexView(TemplateView):
-    print("in IndexView")
+    print "in index view"
     template_name = 'photos.html'
     #reset the upload group anytime the page is reloaded so it doesn't continue to store the uuids
+
 
 class HandleS3View(View):
 
@@ -130,26 +132,26 @@ def sign_headers(headers):
 
 class CollectionView(views.APIView):
     def get(self, request):
+        path = request.path
+        if path[20:].isnumeric():
+            photos = Photo.objects.get_all_photos_in_collection(path[20:])
+            return make_response(200, json.dumps(photos, default=date_handler))
         collections = Collection.objects.get_all_collections()
         return make_response(200, json.dumps(collections))
 
     def post(self, request):
-        print "post"
         # First, we create collection if it doesn't exist
         # Second, add the tags to the collection
         # Update the collection
         # Last, we update the photos with tags, title, description and user - we will be looping through the tags twice to avoid getting too messy/to try and keep the functionality of everything as modular as possible
         upload_group = []
         body = request.data
-        print body
         # body = json.loads(request.body)
         # if the collection already exists
         need_to_create_collection = self.need_collection(body)
-        print need_to_create_collection
         # the collection gets created in the first step of uploading - before the form with title and description. The photos get created with the collection
         if need_to_create_collection:
             data = Collection.objects.new_collection(body)
-            print "in need to create collection"
             return make_response(200, json.dumps(data))
         else:
             collection = Collection.objects.get_collection_query_set(body['collection_id'])
