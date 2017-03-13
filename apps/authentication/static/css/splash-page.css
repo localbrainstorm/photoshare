@@ -1,0 +1,19 @@
+.splash-page{
+    margin-top: 20%;
+}
+
+img.logo {
+    width: 30%;
+}
+
+h1.title {
+    color: darkblue;
+    font-weight: 900;
+    font-size: 400%;
+    letter-spacing: 2px;
+}
+
+h4.logline {
+    color: grey;
+    letter-spacing: 2px;
+}
