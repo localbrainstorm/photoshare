@@ -1,3 +1,12 @@
 body {
     padding-top: 140px;
 }
+
+nav.navbar {
+    background-color: white;
+    border-bottom: none;
+}
+
+img.hamburger-menu {
+    width: 10%;
+}
