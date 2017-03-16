@@ -1,3 +1,17 @@
 body {
     padding-top: 140px;
 }
+
+nav.navbar {
+    background-color: darkblue;
+    border-bottom: none;
+}
+
+img.hamburger-menu {
+    width: 8%;
+}
+
+img.navbar-logo {
+    width: 8%;
+    margin-left: 40%;
+}

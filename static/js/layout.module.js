@@ -3,7 +3,7 @@
 
     angular
         .module('photocollection.layout', [
-            'photocollection.layout.controllers'
+            'photocollection.layout.controllers',
         ]);
 
     angular

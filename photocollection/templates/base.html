@@ -6,27 +6,31 @@
   <title>Photo Collection</title>
 
   <base href="/" />
+  <link rel="stylesheet" href="/node_modules/angular-material/angular-material.css">
 
   {% include 'stylesheets.html' %}
   {%block css %}{% endblock %}
-  {% include 'base_js_files.html' %}
-  {% block javascripts %}{% endblock %}
+
 
 </head>
 <body>
 
   <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarController as vm">
-    <ul class="nav navbar-nav pull-right">
+    <a href="#" class="dropdown-toggle fixed-top" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img class="hamburger-menu" src="../static/css/Menu_icon.svg"></a>
+    <ul class="dropdown-menu menu-options">
       <li class="nav-login ng-hide" ng-show="!vm.activate()"><a href="javascript:void(0)" ng-click="vm.login()">Login</a></li>
       <li class="nav-register ng-hide" ng-show="!vm.activate()"><a href="javascript:void(0)" ng-click="vm.register()">Register</a></li>
       <li class="nav-logout ng-hide" ng-show="vm.activate()"><a href="javascript:void(0)" ng-click="vm.logout()">Logout</a></li>
       <li class="ng-hide" ng-show="vm.activate()"><a href="javascript:void(0)" ng-click="vm.photos()">Add photos</a></li>
       <li><a href="javascript:void(0)" ng-click="vm.collections()">View all collections</a></li>
     </ul>
+    <img src="../static/css/photoshare-icon.png" class="navbar-logo">
   </nav>
 
   <div>{% block content %}{% endblock %}</div>
-
+ 
+  {% include 'base_js_files.html' %}
+  {% block javascripts %}{% endblock %}
 </body>
 
 
