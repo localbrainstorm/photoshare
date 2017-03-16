@@ -7,7 +7,7 @@
             'photocollection.layout',
             'photocollection.config',
             'photocollection.routes',
-            'photocollection.photos'
+            'photocollection.photos',
         ]);
 
     angular
